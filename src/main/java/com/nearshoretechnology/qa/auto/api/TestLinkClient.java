@@ -2,8 +2,6 @@ package com.nearshoretechnology.qa.auto.api;
 
 import org.testng.ITestResult;
 
-import com.nearshoretechnology.qa.auto.api.TestLinkTestData;
-
 import testlink.api.java.client.TestLinkAPIClient;
 import testlink.api.java.client.TestLinkAPIConst;
 import testlink.api.java.client.TestLinkAPIException;
@@ -21,12 +19,16 @@ public class TestLinkClient {
 	}
 
 	public TestLinkClient() {
-		this("http://localhost/testlink/lib/api/xmlrpc/v1/xmlrpc.php",
-				"dfcc32dbfd9cd60759d6702580340e5e");
+		this("http://52.88.145.49:8080/testlink/lib/api/xmlrpc/v1/xmlrpc.php",
+				"268683f01d6baab30f40b7abab9b0100");
 	}
 
 	private void initApiClient() {
 		client = new TestLinkAPIClient(devKey, tlURL);
+	}
+
+	public void createBuild(String projectName, String planName, String buildName, String buildNotes) throws TestLinkAPIException {
+		client.createBuild(projectName, planName, buildName, buildNotes);
 	}
 
 	public void reportTestCaseResult(String projectName, String testPlanName, String buildName,
